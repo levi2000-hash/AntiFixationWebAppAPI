@@ -3,6 +3,15 @@ const app = express()
 const http = require('http')
 const server = http.createServer(app);
 
+patient_data = {
+	1 : {
+		'general' : {
+			'name' : 'levi',
+			'age'  : 21,
+		},
+		'fall_status' : 0.5
+	}
+}
 
 app.get('/patients', (req,res) => {
 	//Get all data 	
@@ -19,6 +28,7 @@ app.put('/patients', (req,res) => {
 	console.log("data updated")
 	res.sendStatus(201)
 })
+
 
 
 app.post('/patient/:id', (req,res) => {
@@ -38,8 +48,9 @@ app.delete('patient/:id', (req,res) => {
 })
 app.get('/patient/:id', (req,res) => {
 	//Get patient data
+	let id = req.params.id;
 	console.log("patient data")
-	res.send("patient data")
+	res.send(patient_data[id].general.name)
 })
 
 
