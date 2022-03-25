@@ -59,10 +59,16 @@ app.put('/patient/:id', (req, res) => {
 	res.sendStatus(201)
 })
 
-app.delete('patient/:id', (req, res) => {
+app.delete('/patient/:id', (req, res) => {
 	//delete patient data
 	console.log("patient deleted")
 	//TODO: implement delete functionality
+	let id = req.params.id - 1
+	try{
+		patient_data.splice(id,1);
+	} catch(err){
+		console.log(err);
+	}	
 	res.sendStatus(200) //Currently returns error: patient ... can't be deleted
 })
 app.get('/patient/:id', (req, res) => {
